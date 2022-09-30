@@ -1,38 +1,36 @@
 package com.springbootrest.springbootrest.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+//import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Entity
 @Table(name = "patient")  
 public class Patient {
 	@Id
-	public Long id;
-	public String firstName;
-	public String lastName;
-	public String dob;
-	public String gender;
+	private Long id;
+	private String firstName;
+	private String lastName;
+	private String dob;
+	private String gender;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address;
 	//ContactNo C1;
-	//Address A1;
 	//Clinical C1;
 	//Insurance I1;
 	//Prescriber Dr1;
 	//Prescription Pr1;
-	
-	public Patient(Long id, String firstName, String lastName, String dob, String gender) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dob = dob;
-		this.gender = gender;
-	}
 
-	public Patient() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "Patient [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob
+				+ ", gender=" + gender + ", address=" + address + "]";
 	}
 
 	public Long getId() {
@@ -75,11 +73,29 @@ public class Patient {
 		this.gender = gender;
 	}
 
-	@Override
-	public String toString() {
-		return "Patient [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob
-				+ ", gender=" + gender + "]";
+	public Address getAddress() {
+		return address;
 	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Patient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Patient(Long id, String firstName, String lastName, String dob, String gender, Address address) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dob = dob;
+		this.gender = gender;
+		this.address = address;
+	}
+	
 	
 	
 	
