@@ -26,15 +26,15 @@ public class PatientController {
 
 	
 	// If i want to get all Patients Details
-	@GetMapping("/patients")
+	@GetMapping("/getAllPatients")
 	public List<Patient> getPatients() {
 		return this.patientService.getPatients();
 	}
 
 	
 	// If i want to get a single patient details with his/her id
-	@GetMapping("/patients/{patientId}")
-	public Patient getCourse(@PathVariable("patientId") Long patientId) {
+	@GetMapping("/getPatientById/{patientId}")
+	public Patient getPatient(@PathVariable("patientId") Long patientId) {
 		Patient patient = new Patient();
 		try {
 			patient = patientService.getPatient(patientId);
@@ -49,8 +49,8 @@ public class PatientController {
 	
 	
 	//If i want to add single patient details
-	@PostMapping("/patients")
-	public Patient addCourse(@RequestBody Patient patient)
+	@PostMapping("/createPatient")
+	public Patient addPatient(@RequestBody Patient patient)
 	{
 		return this.patientService.addPatient(patient);
 	}
@@ -58,7 +58,7 @@ public class PatientController {
 	
 	
 	//If Patient has previous existing id then i can update their details
-	@PutMapping("/patients")
+	@PutMapping("/updatePatient")
 	public Patient updatePatient(@RequestBody Patient patient)
 	{
 		return this.patientService.updatePatient(patient);
@@ -68,7 +68,7 @@ public class PatientController {
 	
 	
 	//To delete patient's detail through previous existing patient id
-	@DeleteMapping("/patients/{patientId}")
+	@DeleteMapping("/deletePatient/{patientId}")
     public void deletePatient(@PathVariable("patientId") Long patientId){
     	patientService.deletePatient(patientId);
     }
