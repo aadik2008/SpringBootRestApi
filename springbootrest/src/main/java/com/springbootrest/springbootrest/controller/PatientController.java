@@ -1,8 +1,11 @@
 package com.springbootrest.springbootrest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +28,19 @@ public class PatientController {
 	private PatientService patientService;
 
 	
+	
 	// If i want to get all Patients Details
-	@GetMapping("/getAllPatients")
-	public List<Patient> getPatients() {
-		return this.patientService.getPatients();
-	}
+		@GetMapping("/getAllPatients")
+		public ResponseEntity<List<Patient>> getPatients() {
+			
+			List<Patient> list=patientService.getPatients(); 
+			if(list.size()<=0)
+			{
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+			return ResponseEntity.of(Optional.of(list));
+		}
+
 
 	
 	// If i want to get a single patient details with his/her id
