@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +15,10 @@ import javax.persistence.Table;
 public class Patient {
 	@Id
 	private Long id;
+	
+	@NotNull(message = "Your first name is missing")
 	private String firstName;
+	
 	private String lastName;
 	private String dob;
 	private String gender;
