@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Size;
+
+//import com.fasterxml.jackson.annotation.JsonFormat;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,9 +22,16 @@ public class Patient {
 	@NotNull(message = "Your first name is missing")
 	private String firstName;
 	
+	@NotNull(message = "Your last name is missing")
 	private String lastName;
+	
+	//@JsonFormat(pattern = "yyyy-MM-dd")
 	private String dob;
+	
+	@NotNull(message = "Your gender is missing")
 	private String gender;
+	
+	@NotNull(message = "Please enter your contact number")
 	private Long ContactNo;
 	
 	@OneToOne(cascade = CascadeType.ALL)//using cascade just for foreign key
@@ -38,6 +48,7 @@ public class Patient {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Prescription prescription;
+	
 	
 	
 	

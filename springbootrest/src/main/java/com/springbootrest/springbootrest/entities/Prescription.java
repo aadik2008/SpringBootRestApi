@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "prescription")
@@ -12,12 +13,26 @@ public class Prescription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int prescriptionId;
+	
+	@NotNull(message = "Please enter NDC")
 	private String ndc;
+	
+	@NotNull(message = "Please enter rxNumber")
 	private int rxNumber;
+	
+	@NotNull(message = "Please enter drug name")
 	private String drugName;
+	
+	@NotNull(message = "Please enter the strength of the drug")
 	private String strength;
+	
+	@NotNull(message = "Please enter the strength unit")
 	private int strengthUnit;
+	
+	@NotNull(message = "Please enter the supply")
 	private int supply;
+	
+	@NotNull(message = "Please enter the refills")
 	private int refills;
 	public Prescription(int prescriptionId, String ndc, int rxNumber, String drugName, String strength,
 			int strengthUnit, int supply, int refills) {

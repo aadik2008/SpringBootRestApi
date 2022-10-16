@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "address")
@@ -12,11 +14,23 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public int addId;
+	
+	@NotNull(message = "Please enter your address")
+	//@Size(max = 50)
 	public String line1;
 	public String line2;
+	
+	@NotNull(message = "Please enter patient's city")
 	public String city;
+	
+	@NotNull(message = "Please enter zip code")
+	//@Size(max = 6)
 	public int zipcode;
+	
+	@NotNull(message = "Please enter state code")
+	//@Size(max = 3)
 	public int statecode;
+	
 	public Address(String line1, String line2, String city, int zipcode, int statecode) {
 		super();
 		this.line1 = line1;

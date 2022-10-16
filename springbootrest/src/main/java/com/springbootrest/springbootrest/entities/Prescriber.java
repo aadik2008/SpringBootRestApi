@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "prescriber")
@@ -12,19 +13,18 @@ public class Prescriber {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int prescriberId;
+	
+	@NotNull(message = "Please enter your NPI number")
 	private int npiNumber;
+	
+	@NotNull(message = "Please enter Prescriber first name")
 	private String prescriberFirstName;
+	
+	@NotNull(message = "Please enter Prescriber last name")
 	private String prescriberLastName;
 	private String prescriberTitle;
-	public Prescriber(int prescriberId, int npiNumber, String prescriberFirstName, String prescriberLastName,
-			String prescriberTitle) {
-		super();
-		this.prescriberId = prescriberId;
-		this.npiNumber = npiNumber;
-		this.prescriberFirstName = prescriberFirstName;
-		this.prescriberLastName = prescriberLastName;
-		this.prescriberTitle = prescriberTitle;
-	}
+	
+	
 	public Prescriber() {
 		super();
 		// TODO Auto-generated constructor stub

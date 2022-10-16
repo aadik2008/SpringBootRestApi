@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "clinical")
@@ -12,12 +13,18 @@ public class Clinical {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int clinicalId;
+	
+	@NotNull(message = "Please enter allergy category")
 	private String allergyCategory;
+	
+	@NotNull(message = "Please enter clinical status")
 	private String clinicalStatus;
+	
+	@NotNull(message = "Please enter desease sevirity")
 	private String severity;
+	
 	private Double height;
 	private Double weight;
-	
 	
 	public Clinical(int clinicalId, String allergyCategory, String clinicalStatus, String severity, Double height,
 			Double weight) {
